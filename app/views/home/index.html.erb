@@ -5,6 +5,7 @@
 <h1>Home#index</h1>
 
 <% if user_signed_in? %>
+    <p>Logged in as <%= current_user.nickname %></p>
     <%= render "posts/form", post: @post %>
     <% else %>
     <p> Please sign in to create a post.</p>

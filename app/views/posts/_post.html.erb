@@ -1,9 +1,9 @@
 <div class="post">
     <h3><%= post.title %></h3>
     <p><%= simple_format(post.caption) %></p>
-    <p> by <%= post.user.email %> | <%= time_ago_in_words(post.created_at) %> ago </p>
+    <p> by <%= post.user.nickname %> | <%= time_ago_in_words(post.created_at) %> ago </p>
     <% if post.image.attached? %>
-        <%= image_tag post.image%>
+        <%= image_tag post.image, style: "max-width: 300px; height: auto;" %>
     <% end %>
     <% if current_user == post.user %>
         <%= link_to "Edit", edit_post_path(post) %> |
