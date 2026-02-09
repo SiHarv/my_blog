@@ -20,6 +20,17 @@
         <%= f.text_area :caption %>
     </div>
 
+    <% if post.image.attached? %>
+        <div>
+            <p>Current image:</p>
+            <%= image_tag post.image, style: "max-width: 300px; height: auto;" %>
+            <p>
+                <%= f.check_box :remove_image %>
+                <%= f.label :remove_image, "Remove current image" %>
+            </p>
+        </div>
+    <% end%>
+
     <div>
         <%= f.label :image, "Upload Image" %><br>
         <%= f.file_field :image, accept: "image/*" %>
