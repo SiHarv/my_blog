@@ -20,6 +20,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post.image.purge if params[:post][:remove_image] == "1"
     if @post.update(post_params)
       redirect_to root_path, notice: "Post was successfully updated."
     else
@@ -50,6 +51,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :caption, :image)
+    params.require(:post).permit(:title, :caption, :image, :remove_image)
   end
 end
