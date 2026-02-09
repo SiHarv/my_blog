@@ -3,6 +3,13 @@
   position: relative;
   display: inline-block; /* keeps container sized to content; change to block for full-width */
   max-width: 100%;
+  border: 8px solid rgb(144, 150, 204);
+}
+
+.home-logout {
+    background: #1d4ed8; 
+    color: #fff; 
+   
 }
 
 /* Ensure image scales nicely inside container */
