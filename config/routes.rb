@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  get "posts/create"
-  get "posts/new"
-  get "posts/edit"
-  get "posts/update"
-  get "posts/destroy"
-  get "posts/index"
-  get "posts/show"
-  get "home/index"
   devise_for :users
   # RESTful routes for posts
   resources :posts, only: [ :new, :create, :edit, :update, :destroy, :index, :show ]
