@@ -1,0 +1,14 @@
+<div class="comment" id="comment-<%= comment.id %>">
+  <p class="comment-meta">
+    <strong><%= comment.user.try(:nickname) || comment.user.email %></strong>
+    · <%= time_ago_in_words(comment.created_at) %> ago
+  </p>
+  <div class="comment-body"><%= simple_format(h(comment.body)) %></div>
+
+  <% if current_user && (current_user == comment.user || current_user == post.user) %>
+    <%= link_to "Delete", post_comment_path(post, comment),
+                method: :delete,
+                data: { turbo_method: :delete },
+                class: "comment-delete" %>
+  <% end %>
+</div>

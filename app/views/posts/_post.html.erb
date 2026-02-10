@@ -12,6 +12,17 @@
                 alt: post.title, class: "post-image" %>
             </div>
         <% end %>
+        <div>
+            <%= render partial: "comments/comment", collection: post.comments.order(created_at: :asc),
+             as: :comment, locals: { post: post } %>
+        </div>
+        <div>
+            <% if user_signed_in? %>
+                <%= render "comments/form", post: post, comment: Comment.new %>
+            <% else %>
+                <p><%= link_to "Sign in", new_user_session_path %> to comment. </p>
+            <% end %>
+        </div>
     </div> 
 
     <% if current_user == post.user %>
