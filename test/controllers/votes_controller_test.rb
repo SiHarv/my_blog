@@ -6,9 +6,7 @@ class VotesController < ApplicationController
 
   def create
     @vote = @post.votes.find_or_initialize_by(user_id: current_user.id)
-    
     vote_value = params[:value].to_i
-    
     if vote_value == 0
       @vote.destroy if @vote.persisted?
       message = "Vote removed"
