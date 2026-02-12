@@ -22,6 +22,7 @@ gem "devise", "~> 5.0"
 gem "activestorage", "~> 8.1", ">= 8.1.2"
 gem "image_processing", "~> 1.14"
 gem "motor-admin"
+gem "tailwindcss-rails"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
