@@ -1,0 +1,13 @@
+<% if user_signed_in? %>
+  <header class="mb-6">
+    <div class="flex items-center justify-between gap-4 rounded-xl bg-white/80 border border-orange-100 px-4 py-3 shadow-sm">
+      <p class="text-sm sm:text-base text-gray-700">
+        Hello <span class="font-semibold text-orange-800"><%= current_user.nickname %></span>
+      </p>
+      <%= link_to "Sign Out",
+        destroy_user_session_path,
+        data: { turbo_method: :delete },
+        class: "inline-flex items-center rounded-md bg-orange-400 px-3 py-1.5 text-sm font-semibold text-white hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200" %>
+    </div>
+  </header>
+<% end %>
