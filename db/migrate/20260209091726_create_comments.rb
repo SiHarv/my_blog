@@ -7,5 +7,7 @@ class CreateComments < ActiveRecord::Migration[8.1]
 
       t.timestamps
     end
+    # Should only 1 vote per user on post
+    add_index :votes, [ :post_id, :user_id ], unique: true
   end
 end

@@ -12,6 +12,44 @@
                 alt: post.title, class: "post-image" %>
             </div>
         <% end %>
+        <%# vote count and buttons %>
+        <div class="vote_section">
+            <div class="votes">
+                <% if user_signed_in? %>
+                    <% user_vote = post.user_vote(current_user) %>
+
+                    <%= button_to post_votes_url(post),
+                        method: :post,
+                        params: { value: 1 },
+                        class: "vote-btn upvote #{user_vote&.value == 1 ? 'active' : ''}",
+                        local: true do %>
+                        Upvote
+                    <% end %>
+
+                    <%= button_to post_votes_url(post),
+                        method: :post,
+                        params: { value: -1 },
+                        class: "vote-btn downvote #{user_vote&.value == -1 ? 'active' : ''}",
+                        local: true do %>
+                        Downvote
+                    <% end %>
+
+                    <% if user_vote %>
+                        <%= button_to post_votes_url(post),
+                            method: :post,
+                            params: { value: 0 },
+                            class: "vote-btn unvote",
+                            local: true do %>
+                        Remove Vote
+                        <% end %>
+                    <% end %>
+                <% else %>
+                    <p><%= link_to "Sign in", new_user_session_path %> to vote. </p>
+                <% end %>
+
+                <span class="vote-count"><%= post.vote_count %> votes</span>
+            </div>
+        </div>
         <div>
             <%= render partial: "comments/comment", collection: post.comments.order(created_at: :asc),
              as: :comment, locals: { post: post } %>
