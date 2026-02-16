@@ -48,7 +48,7 @@
           <div class="flex items-center gap-2">
 
             <%# Use hotwire here! %>
-            <%= usert_vote = post.user_vote(current_user)%>
+            
             <%= button_to post_votes_url(post),
               method: :post,
               params: { value: 1 },
@@ -61,15 +61,6 @@
               params: { value: -1 },
               class: "px-4 py-2 rounded-md text-sm font-semibold border border-gray-200 #{user_vote&.value == -1 ? 'bg-gray-700 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}" do %>
               👎 Downvote
-            <% end %>
-
-            <% if user_vote %>
-              <%= button_to post_votes_url(post),
-                method: :post,
-                params: { value: 0 },
-                class: "px-4 py-2 rounded-md text-sm font-semibold border border-orange-200 text-orange-700 bg-white hover:bg-orange-100" do %>
-                Remove Vote
-              <% end %>
             <% end %>
           </div>
 
