@@ -46,6 +46,9 @@
         <% if user_signed_in? %>
           <% user_vote = post.user_vote(current_user) %>
           <div class="flex items-center gap-2">
+
+            <%# Use hotwire here! %>
+            <%= usert_vote = post.user_vote(current_user)%>
             <%= button_to post_votes_url(post),
               method: :post,
               params: { value: 1 },
@@ -70,7 +73,7 @@
             <% end %>
           </div>
 
-          <span class="text-sm font-semibold text-gray-700">
+          <span id="post_votes_<%= post.id %>" class="text-sm font-semibold text-gray-700">
             <%= post.vote_count %> votes
           </span>
         <% else %>

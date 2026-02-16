@@ -15,12 +15,10 @@ class VotesController < ApplicationController
         message = "Error: #{@vote.errors.full_messages.join(", ")}"
       end
     end
-
-    # respond_to do |format|
-    #   format.turbo_stream { render :update, locals: { message: message } }
-    #   format.html { redirect_back fallback_location: root_path, notice: message }
-    #   end
-    redirect_back fallback_location: root_path, notice: message
+    respond_to do |format|
+      format.turbo_stream { render :create }
+      format.html { redirect_back fallback_location: root_path, notice: message }
+    end
   end
 
   def destroy

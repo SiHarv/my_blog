@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "post_votes_#{@post.id}" do %>
+  <span id="post_votes_<%= @post.id %>" class="text-sm font-semibold text-gray-700">
+    <%= @post.vote_count %> votes
+  </span>
+<% end %>
