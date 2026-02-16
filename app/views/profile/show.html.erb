@@ -1,0 +1,73 @@
+<div class="min-h-screen bg-[#FDFDFC] py-12 px-4">
+  <div class="max-w-3xl mx-auto">
+    
+    <%# Back Link %>
+    <%= link_to root_path, class: "inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-orange-600 transition-colors mb-8" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      Back to Feed
+    <% end %>
+
+    <div class="bg-white border border-orange-100 rounded-[2.5rem] overflow-hidden shadow-xl shadow-orange-100/20">
+      <%# Cover Accent %>
+      <div class="h-32 bg-gradient-to-r from-orange-100 to-orange-50"></div>
+
+      <div class="px-8 pb-12">
+        <div class="relative flex justify-between items-end -mt-16 mb-8">
+          <%# Sample Profile Picture Placeholder %>
+          <div class="w-32 h-32 bg-white rounded-[2rem] p-2 shadow-lg">
+            <div class="w-full h-full bg-orange-200 rounded-[1.5rem] flex items-center justify-center text-orange-700 text-4xl font-black border-4 border-white">
+              <%= @user.nickname&.first&.upcase || @user.email.first.upcase %>
+            </div>
+          </div>
+
+          <%# Edit Action (Placeholder for now) %>
+          <%= link_to "#", class: "px-6 py-3 bg-gray-900 text-white text-sm font-bold rounded-xl hover:bg-orange-600 transition-all opacity-50 cursor-not-allowed" do %>
+            Edit Profile
+          <% end %>
+        </div>
+
+        <%# User Details %>
+        <div class="space-y-6">
+          <div>
+            <h1 class="text-4xl font-black text-gray-900 tracking-tight">
+              <%= @user.nickname.presence || "Member" %>
+            </h1>
+            <p class="text-gray-500 font-medium">@<%= @user.email.split('@').first %></p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-6 bg-orange-50/50 border border-orange-100 rounded-2xl">
+              <span class="text-xs font-bold uppercase tracking-widest text-orange-700 block mb-1">Email Address</span>
+              <span class="text-gray-900 font-semibold"><%= @user.email %></span>
+            </div>
+
+            <div class="p-6 bg-gray-50 border border-gray-100 rounded-2xl">
+              <span class="text-xs font-bold uppercase tracking-widest text-gray-500 block mb-1">Joined Date</span>
+              <span class="text-gray-900 font-semibold"><%= @user.created_at.strftime("%B %Y") %></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <%# Quick Stats Section %>
+    <div class="mt-8 grid grid-cols-3 gap-4 text-center">
+      <div class="bg-white border border-orange-50 p-4 rounded-2xl shadow-sm">
+        <p class="text-2xl font-black text-gray-900"><%= @user.posts.count %></p>
+        <p class="text-xs font-bold text-gray-400 uppercase">Posts</p>
+      </div>
+      <div class="bg-white border border-orange-50 p-4 rounded-2xl shadow-sm">
+        <p class="text-2xl font-black text-gray-900">0</p>
+        <p class="text-xs font-bold text-gray-400 uppercase">Followers</p>
+      </div>
+      <div class="bg-white border border-orange-50 p-4 rounded-2xl shadow-sm">
+        <p class="text-2xl font-black text-gray-900">0</p>
+        <p class="text-xs font-bold text-gray-400 uppercase">Following</p>
+      </div>
+    </div>
+
+  </div>
+</div>
