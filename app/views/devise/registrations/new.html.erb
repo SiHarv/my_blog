@@ -1,35 +1,88 @@
-<h2>Sign up</h2>
+<div class="min-h-screen flex items-center justify-center bg-[#FDFDFC] px-4 py-12">
+  <div class="max-w-md w-full">
+    
+    <%# Branding %>
+    <div class="text-center mb-10">
+      <%= link_to root_path, class: "inline-block mb-6" do %>
+        <div class="w-12 h-12 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto">
+          <span class="text-orange-600 font-bold text-xl">B</span>
+        </div>
+      <% end %>
+      <h2 class="text-3xl font-black text-gray-900 tracking-tight">Create your account</h2>
+      <p class="text-gray-500 mt-2">Join a community of modern thinkers</p>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="bg-white border border-orange-100 rounded-[2rem] p-8 shadow-xl shadow-orange-100/20">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        
+        <%# Error Messages Container %>
+        <% if resource.errors.any? %>
+          <div class="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded-r-xl">
+            <%= render "devise/shared/error_messages", resource: resource %>
+          </div>
+        <% end %>
 
-  <div class="field">
-    <%= f.label :nickname %><br/>
-    <p><%= f.text_field :nickname, autofocus: true, autocomplete: "username" %></p>
+        <div class="space-y-5">
+          <%# Nickname Field %>
+          <div>
+            <%= f.label :nickname, class: "block text-sm font-bold text-gray-700 mb-2" %>
+            <%= f.text_field :nickname, 
+                autofocus: true, 
+                autocomplete: "username",
+                placeholder: "Display name",
+                class: "w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 transition-all outline-none" %>
+          </div>
+
+          <%# Email Field %>
+          <div>
+            <%= f.label :email, class: "block text-sm font-bold text-gray-700 mb-2" %>
+            <%= f.email_field :email, 
+                autocomplete: "email",
+                placeholder: "name@example.com",
+                class: "w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 transition-all outline-none" %>
+          </div>
+
+          <%# Password Field %>
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <%= f.label :password, class: "text-sm font-bold text-gray-700" %>
+              <% if @minimum_password_length %>
+                <span class="text-[10px] uppercase tracking-wider text-gray-400 font-bold">
+                  min <%= @minimum_password_length %> chars
+                </span>
+              <% end %>
+            </div>
+            <%= f.password_field :password, 
+                autocomplete: "new-password",
+                placeholder: "Create a strong password",
+                class: "w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 transition-all outline-none" %>
+          </div>
+
+          <%# Password Confirmation Field %>
+          <div>
+            <%= f.label :password_confirmation, "Confirm Password", class: "block text-sm font-bold text-gray-700 mb-2" %>
+            <%= f.password_field :password_confirmation, 
+                autocomplete: "new-password",
+                placeholder: "Repeat your password",
+                class: "w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 transition-all outline-none" %>
+          </div>
+
+          <%# Submit Button %>
+          <div class="pt-4">
+            <%= f.submit "Create Account", 
+                class: "w-full py-4 bg-gray-900 hover:bg-orange-600 text-white font-bold rounded-2xl transition-all duration-300 cursor-pointer shadow-lg shadow-gray-200 hover:shadow-orange-200 transform hover:-translate-y-0.5 active:translate-y-0" %>
+          </div>
+        </div>
+      <% end %>
+
+      <%# Footer Links %>
+      <div class="mt-8 pt-6 border-t border-gray-50 text-center">
+        <p class="text-sm text-gray-500">
+          Already have an account? 
+          <%= link_to "Sign in here", new_session_path(resource_name), class: "text-orange-600 font-bold hover:underline" %>
+        </p>
+      </div>
+    </div>
 
   </div>
-
-  <div class="field">
-    <p><%= f.label :email %></p>
-    <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
-  </div>
-
-  <div class="field">
-    <p><%= f.label :password %></p>
-    <% if @minimum_password_length %>
-      <p><em>(<%= @minimum_password_length %> characters minimum)</em></p>
-    <% end %>
-    <p><%= f.password_field :password, autocomplete: "new-password" %></p>
-  </div>
-
-  <div class="field">
-    <p><%= f.label :password_confirmation %></p>
-    <p><%= f.password_field :password_confirmation, autocomplete: "new-password" %></p>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
