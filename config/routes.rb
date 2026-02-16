@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
   # RESTful routes for posts
   resources :posts do
-    resources :comments, only: [ :create, :destroy ]
+    resources :comments, only: [ :create, :destroy, :edit, :update ]
     resource :votes, only: [ :create ]
   end
   root "home#index"
